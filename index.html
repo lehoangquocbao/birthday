@@ -1151,6 +1151,7 @@
 
             if (distance <= 0) {
                 countdownFinished = true;
+                document.querySelector('.title').textContent = '🌷 Ngày đặc biệt đã đến 🌷';
                 document.getElementById('countdown').innerHTML = '<div style="color: white; font-size: 2.5rem; text-align: center; width: 100%; display: flex; align-items: center; justify-content: center; min-height: 100px;">🎉 Đã đến giờ! 🎉</div>';
                 document.querySelector('.start-btn').disabled = false;
                 document.querySelector('.start-btn').style.opacity = "1";

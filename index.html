@@ -601,6 +601,22 @@
             font-weight: bold;
             margin-bottom: 1rem;
             text-shadow: 0 2px 10px rgba(255,105,180,0.3);
+            cursor: pointer;
+            position: relative;
+        }
+        .card-name:hover {
+            transform: scale(1.05);
+            filter: brightness(1.2);
+        }
+
+        .card-name::after {
+            content: '🔒';
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            opacity: 0.7;
         }
         
         .birthday-card.opened .card-front-image {
@@ -982,6 +998,203 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-8px); }
         }
+        .password-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+        .password-modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        .password-box {
+            background: linear-gradient(135deg, #fff 0%, #ffe5f0 100%);
+            padding: 3rem;
+            border-radius: 25px;
+            border: 5px solid #ff69b4;
+            box-shadow: 0 20px 60px rgba(255,20,147,0.6);
+            text-align: center;
+            animation: scaleIn 0.5s ease;
+            max-width: 400px;
+            width: 90%;
+        }
+        .password-title {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #ff1493, #ff69b4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        .password-input:focus {
+            outline: none;
+            border-color: #ff1493;
+            box-shadow: 0 0 20px rgba(255,20,147,0.3);
+        }
+        .password-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+        .password-btn {
+            background: linear-gradient(135deg, #ff1493, #ff69b4);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255,20,147,0.4);
+        }
+        .password-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255,20,147,0.6);
+        }
+        .password-btn.cancel {
+            background: linear-gradient(135deg, #999, #666);
+        }
+        .password-error {
+            color: #ff1493;
+            font-size: 1rem;
+            margin-top: 1rem;
+            font-weight: bold;
+            display: none;
+        }
+
+        /* Secret Letter Modal */
+        .secret-letter-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 10002;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .secret-letter-modal.active {
+            display: flex;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .secret-letter {
+            background: linear-gradient(135deg, #fff9e6 0%, #fff5f0 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 5px solid #ff69b4;
+            box-shadow: 0 20px 60px rgba(255,20,147,0.6);
+            max-width: 700px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: letterOpen 0.8s ease;
+        }
+
+        @keyframes letterOpen {
+            from {
+                opacity: 0;
+                transform: scale(0.8) rotateX(-20deg);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) rotateX(0);
+            }
+        }
+
+        .letter-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 3px solid #ff69b4;
+            padding-bottom: 1.5rem;
+        }
+
+        .letter-title {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #ff1493, #ff69b4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .letter-subtitle {
+            color: #ff69b4;
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        .letter-content {
+            color: #333;
+            font-size: 1.2rem;
+            line-height: 2;
+            text-align: left;
+            margin-bottom: 2rem;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .letter-content p {
+            margin-bottom: 1.5rem;
+            text-indent: 2rem;
+        }
+
+        .letter-signature {
+            text-align: right;
+            color: #ff1493;
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-top: 2rem;
+            font-weight: bold;
+        }
+
+        .close-letter {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: #ff69b4;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(255,105,180,0.5);
+        }
+
+        .close-letter:hover {
+            transform: rotate(90deg) scale(1.1);
+            background: #ff1493;
+        }
+
+        .letter-decoration {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.2;
+        }
+
+        .letter-decoration.tl { top: 10px; left: 10px; }
+        .letter-decoration.tr { top: 10px; right: 10px; }
+        .letter-decoration.bl { bottom: 10px; left: 10px; }
+        .letter-decoration.br { bottom: 10px; right: 10px; }
     </style>
 </head>
 <body>
@@ -1077,8 +1290,9 @@
                         <div class="envelope-body">
                             <img src="png10.jpg"
                                  alt="Thanh Thủy" 
-                                 class="card-front-image">
-                            <div class="card-name"> Thanh Thủy </div>
+                                 class="card-front-image"
+                                 onclick="event.stopPropagation()">
+                            <div class="card-name" onclick="event.stopPropagation(); openSecretLetter()">Thanh Thủy</div>
                             <div class="card-front-text">🌷 Nhấn để mở 🌷</div>
                         </div>
                         <div class="card-content">
@@ -1127,11 +1341,81 @@
             <img src="png8.jpg" class="slider-photo" alt="Photo 8">
             <img src="png9.jpg" class="slider-photo" alt="Photo 9">
             <img src="png10.jpg" class="slider-photo" alt="Photo 10">
+</div>
+    </div>
+
+    <!-- Password Modal -->
+    <div class="password-modal" id="passwordModal">
+        <div class="password-box">
+            <div class="password-title">🔒 Nhập Mật Khẩu</div>
+            <p style="color: #ff69b4; margin-bottom: 1.5rem;">Thiệp này được bảo vệ bằng mật khẩu</p>
+            <input type="password" 
+                   class="password-input" 
+                   id="passwordInput" 
+                   placeholder="••••••"
+                   maxlength="20">
+            <div class="password-error" id="passwordError">❌ Mật khẩu không đúng!</div>
+            <div class="password-buttons">
+                <button class="password-btn cancel" onclick="closePasswordModal()">Hủy</button>
+                <button class="password-btn" onclick="checkPassword()">Mở Thiệp</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Secret Letter Modal -->
+    <div class="secret-letter-modal" id="secretLetterModal">
+        <div class="secret-letter">
+            <button class="close-letter" onclick="closeSecretLetter()">✕</button>
+            
+            <div class="letter-decoration tl">🌷</div>
+            <div class="letter-decoration tr">🌸</div>
+            <div class="letter-decoration bl">💐</div>
+            <div class="letter-decoration br">🌺</div>
+            
+            <div class="letter-header">
+                <div class="letter-title">Lá Thư Bí Mật </div>
+            </div>
+            
+            <div class="letter-content">
+                <p>Gửi Thanh Thủy</p> 
+                
+                <p>Đây là bức thư cũng đắn đo rất nhiều mới có. Xin phép xưng biệt danh. Lá thư này là tính năng ẩn nếu mở được lá thư này chứng tỏ đã có một sự tiến triển gì đó còn không thì lá thư này mãi mãi được ẩn dấu.</p>
+                
+                <p>Từ ngày đầu tiên nhắn tin lại thật ra Beo còn nghĩ lại chuyện năm 11 đó là một chuyện thật sự là khó quên, đến giờ thật ra vẫn chưa quên được
+                    Việc nhắn cho Béo rủ Muội về đây đi chơi thật ra lúc đó chỉ là chọc ghẹo thôi cũng không ngờ là đồng ý.
+                    Sau đó nhắn tin lại với nhau ban đầu Beo cũng chẳng nghĩ gì nhiều chỉ nghĩ là nhắn tin vui vẻ thôi.
+                    Thấy Muội gửi nhiều ảnh đơi thường qua thì thật sự lúc đó Beo cũng chẳng hiểu Muội làm vậy để làm gì nữa tới giờ vẫn chưa hiểu đươc.
+                    Beo tắt đọc mà nên gửi ảnh thì xem nhưng cũng không muốn trả lời lắm tại vì kí ức đó thật sự là không vui vẻ gì cả.
+                    Rồi sau này cũng chẳng hiểu vì sao mà Beo lại muốn nhắn tin với Muội nữa. Có lẽ là cũng có để ý Muội rồi. Nhưng để nói mà muốn tiến tới không thì Beo cũng đắng đó rất nhiều
+                    Nhưng tất nhiên là vẫn đắn đo nhiều thứ lắm. Ở xa nhau nên có nhiều thứ nó không dễ dàng gì cũng khó gặp nhau nữa.
+                    Beo cũng có ý với Muội nhưng nó vẫn chưa chắc chắn lắm vì cũng nghĩ đến nhiều thứ.
+                    Beo cũng kể Muội nghe chuyện trước đó với một người trong lớp rồi cho nên Beo càng có một chút dè chừng hơn.
+                    Beo biết có nhiều người để ý đến muội nhưng đó cũng là điều hiển nhiên thôi.
+                    Đây cũng là lần đầu tiên Beo viết cái này, cũng như code web này và web 20/10 cho Muội, Beo chưa từng làm thế cho ai hết nên cũng không biết làm gì hơn.
+                    Chắc Muội sẽ nghĩ đến bạn kia trong lớp Beo vì sao Beo không làm vậy thì Beo trả lời là lúc đó Beo cũng không nghĩ đến mấy chuyện này.
+                    Đến hôm này là 25/10 là sinh nhật Muội, sáng sớm Beo thấy Muội đăng lại các video thì cũng nghĩ là khả năng cao là đang nhắc tới ai đó gần đây hoặc có thể là có mà Beo không biết cũng nên.
+                    Thật sự vấn đề này khó nói lắm, Beo cũng không biết phải nói sao nữa. Giờ Beo cũng chẳng biết làm gì nên thôi cũng thuận theo tự nhiên vậy.
+                    Nếu ngày nào đó Beo không muốn nói chuyện nữa thì coi như xin lỗi Muội trước nhé, thật sự là Beo có quá nhiều sự tò mò đến lúc nào đó mà không được giải thích thì cũng có thể là không nói chuyện được nữa.
+                    Beo lại nghĩ Muội không nói cho Beo biết thì cũng không sao vì chúng ta chỉ là bạn. Beo thấy muội cứ đắn đo mãi hỏi mà không trả lời nên cũng có nghi vấn.
+                    Nên Beo mới làm cái này để nói ra hết những gì trong lòng.
+                    Thôi thì Beo cũng đã nói ra hết những gì rồi, cũng mong một ngày nào đó Muội sẽ đọc được lá thư này và nói cho Beo hết những thứ Beo thắc mắc.
+                </p>
+                
+                <p>Lời cuối cùng mong cả hai ta thật hạnh phúc </p>
+                <p>From: Beo</p>
+            </div>
+            
+            <div class="letter-signature">
+                ~ 25/10/2025 ~<br>
+                🌷🌷🌷
+            </div>
         </div>
     </div>
 
     <script>
         let countdownFinished = false;
+        const CORRECT_PASSWORD = "future"; // Thay đổi mật khẩu ở đây
+        let isCardUnlocked = false;
         
         // Countdown Timer
         function updateCountdown() {
@@ -1200,10 +1484,88 @@
             }, 3000);
         }
 
-        // Toggle Card
+// Toggle Card
         function toggleCard() {
             const card = document.getElementById('birthdayCard');
             card.classList.toggle('opened');
+        }
+
+        // Password Modal Functions
+        function openPasswordModal() {
+            document.getElementById('passwordModal').classList.add('active');
+            document.getElementById('passwordInput').focus();
+            document.getElementById('passwordError').style.display = 'none';
+            document.getElementById('passwordInput').value = '';
+        }
+
+        function closePasswordModal() {
+            document.getElementById('passwordModal').classList.remove('active');
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('passwordError').style.display = 'none';
+        }
+
+        function checkPassword() {
+            const input = document.getElementById('passwordInput').value;
+            const errorDiv = document.getElementById('passwordError');
+            
+            if (input === CORRECT_PASSWORD) {
+                isCardUnlocked = true;
+                closePasswordModal();
+                // Tự động mở thiệp sau khi nhập đúng mật khẩu
+                setTimeout(() => {
+                document.getElementById('secretLetterModal').classList.add('active');
+                document.body.style.overflow = 'hidden';
+                }, 300);
+            } else {
+                errorDiv.style.display = 'block';
+                document.getElementById('passwordInput').value = '';
+                document.getElementById('passwordInput').focus();
+                
+                // Làm rung input để báo lỗi
+                const passwordBox = document.querySelector('.password-box');
+                passwordBox.style.animation = 'none';
+                setTimeout(() => {
+                    passwordBox.style.animation = 'shake 0.5s ease';
+                }, 10);
+            }
+        }
+
+        // Thêm CSS animation cho shake effect
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-10px); }
+                75% { transform: translateX(10px); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Cho phép nhấn Enter để submit password
+        document.addEventListener('DOMContentLoaded', function() {
+            const passwordInput = document.getElementById('passwordInput');
+            if (passwordInput) {
+                passwordInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        checkPassword();
+                    }
+                });
+            }
+        });
+
+        // Secret Letter Functions
+        function openSecretLetter() { 
+            if (!isCardUnlocked) {
+                openPasswordModal();
+                return;
+            }
+            document.getElementById('secretLetterModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSecretLetter() {
+            document.getElementById('secretLetterModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
         }
 
         // Open Album
